@@ -1,0 +1,440 @@
+@import "./demo-hand.css";
+
+.sm-showcase-intro-screen.sm-flow-screen--intro {
+    --sm-flow-intro-screen-padding: var(--sm-showcase-intro-screen-padding, 0.8rem);
+    --sm-flow-intro-main-actions-justify: var(--sm-showcase-intro-actions-justify, center);
+}
+
+.sm-showcase-intro-panel.sm-flow-panel--intro {
+    --sm-flow-intro-panel-width: var(--sm-showcase-intro-panel-width, 100%);
+    --sm-flow-intro-panel-height: var(--sm-showcase-intro-panel-height, calc(100% - 0.8rem));
+    --sm-flow-intro-panel-min-height: var(--sm-showcase-intro-panel-min-height, 0);
+    --sm-flow-intro-panel-padding: var(--sm-showcase-intro-panel-padding, 0.8rem 0 0);
+    --sm-flow-intro-panel-gap: var(--sm-showcase-intro-panel-gap, 2.4rem);
+    --sm-flow-intro-panel-rows: var(--sm-showcase-intro-panel-rows, auto minmax(0, 1fr) auto);
+    background: var(--sm-showcase-intro-panel-bg, transparent);
+    border: var(--sm-showcase-intro-panel-border, none);
+    box-shadow: var(--sm-showcase-intro-panel-shadow, none);
+    backdrop-filter: var(--sm-showcase-intro-panel-backdrop, none);
+    -webkit-backdrop-filter: var(--sm-showcase-intro-panel-backdrop, none);
+}
+
+.sm-showcase-intro-panel .sm-flow-top {
+    margin-bottom: var(--sm-showcase-intro-top-gap, 2rem);
+}
+
+.sm-showcase-intro-content > .sm-flow-slot {
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+}
+
+.sm-showcase-intro-lead {
+    min-width: 0;
+}
+
+.sm-showcase-intro-showcase,
+.sm-showcase-intro-guide {
+    display: grid;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+}
+
+.sm-showcase-intro-showcase {
+    align-content: stretch;
+}
+
+.sm-showcase-intro-guide {
+    align-content: stretch;
+}
+
+.sm-showcase-intro-main-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+    width: 100%;
+}
+
+/* =================== 通用 Demo 壳层 =================== */
+
+.sm-showcase-demo-panel {
+    display: grid;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    gap: var(--sm-showcase-demo-panel-gap, 0);
+}
+
+.sm-showcase-demo-card {
+    display: grid;
+    gap: var(--sm-showcase-demo-card-gap, 2.4rem);
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    padding: var(--sm-showcase-demo-card-padding, 2.4rem);
+    border-radius: var(--sm-showcase-demo-card-radius, 2.4rem);
+    background: var(--sm-showcase-demo-card-bg, #ffffff);
+    border: var(--sm-showcase-demo-card-border, none);
+    box-shadow: var(--sm-showcase-demo-card-shadow, 0 1.2rem 2.4rem rgba(0, 0, 0, 0.05));
+    backdrop-filter: var(--sm-showcase-demo-card-backdrop, none);
+}
+
+.sm-showcase-demo-stage-shell {
+    position: relative;
+    width: 48rem;
+    max-width: 48rem;
+    height: 36.8rem;
+    min-height: 0;
+    margin: 0 auto;
+    border-radius: var(--sm-showcase-demo-stage-shell-radius, 2.4rem);
+    background: var(
+        --sm-showcase-demo-stage-shell-bg,
+        linear-gradient(135deg, rgba(251, 225, 173, 0.8) 0%, rgba(240, 173, 115, 0.8) 100%)
+    );
+    box-shadow: var(--sm-showcase-demo-stage-shell-shadow, inset 0 0.24rem 0.48rem rgba(0, 0, 0, 0.05));
+    overflow: hidden;
+}
+
+.sm-showcase-demo-stage-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--sm-showcase-demo-badge-height, 4rem);
+    padding: var(--sm-showcase-demo-badge-padding, 0.74rem 1.44rem);
+    border-radius: var(--sm-showcase-demo-badge-radius, 1.49rem 0 1.49rem 0);
+    background: var(--sm-showcase-demo-badge-bg, #2b7fff);
+    color: var(--sm-showcase-demo-badge-color, #ffffff);
+    font-size: var(--sm-showcase-demo-badge-font-size, 1.74rem);
+    font-weight: var(--sm-showcase-demo-badge-font-weight, 600);
+    line-height: var(--sm-showcase-demo-badge-line-height, 1.4);
+}
+
+.sm-showcase-demo-stage-actions {
+    position: absolute;
+    left: 50%;
+    bottom: var(--sm-showcase-demo-actions-bottom, 2.6rem);
+    z-index: 3;
+    transform: translateX(-50%);
+}
+
+.sm-showcase-demo-fullscreen-btn {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sm-showcase-demo-fullscreen-btn-gap, 1.6rem);
+    min-width: var(--sm-showcase-demo-fullscreen-btn-min-width, 18rem);
+    height: var(--sm-showcase-demo-fullscreen-btn-height, 4.8rem);
+    padding: var(--sm-showcase-demo-fullscreen-btn-padding, 0.98rem 2.56rem);
+    border: var(--sm-showcase-demo-fullscreen-btn-border, 0.04rem solid rgba(255, 255, 255, 0.3));
+    border-radius: var(--sm-showcase-demo-fullscreen-btn-radius, 999rem);
+    background: var(--sm-showcase-demo-fullscreen-btn-bg, rgba(255, 255, 255, 0.2));
+    color: var(--sm-showcase-demo-fullscreen-btn-color, #ffffff);
+    font-size: var(--sm-showcase-demo-fullscreen-btn-font-size, 1.9rem);
+    font-weight: var(--sm-showcase-demo-fullscreen-btn-font-weight, 600);
+    line-height: var(--sm-showcase-demo-fullscreen-btn-line-height, 1.49);
+    white-space: nowrap;
+    box-shadow: var(--sm-showcase-demo-fullscreen-btn-shadow, inset 0 0.08rem 0.16rem rgba(0, 0, 0, 0.05));
+    cursor: pointer;
+}
+
+.sm-showcase-demo-fullscreen-btn__icon {
+    width: var(--sm-showcase-demo-fullscreen-btn-icon-width, 2.4rem);
+    height: var(--sm-showcase-demo-fullscreen-btn-icon-height, 2.55rem);
+    flex: 0 0 auto;
+    background: var(
+        --sm-showcase-demo-fullscreen-btn-icon-bg,
+        var(--sm-shared-intro-fullscreen-icon-image, none) center / 100% 100% no-repeat
+    );
+}
+
+.sm-showcase-demo-voice-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sm-showcase-demo-voice-gap, 0.8rem);
+}
+
+.sm-showcase-demo-voice-icon {
+    flex: 0 0 auto;
+    width: var(--sm-showcase-demo-voice-icon-width, 2rem);
+    height: var(--sm-showcase-demo-voice-icon-height, 2rem);
+    margin-top: var(--sm-showcase-demo-voice-icon-margin-top, 0.2rem);
+    background: var(
+        --sm-showcase-demo-voice-icon-bg,
+        var(--sm-shared-intro-voice-icon-image, none) center / 1.5rem 2rem no-repeat
+    );
+    box-shadow: none;
+}
+
+.sm-showcase-demo-voice-copy {
+    flex: 1 1 auto;
+    font-size: var(--sm-showcase-demo-voice-copy-size, 2rem);
+    line-height: var(--sm-showcase-demo-voice-copy-line-height, 1.4);
+    color: var(--sm-showcase-demo-voice-copy-color, #1d293d);
+}
+
+.sm-showcase-demo-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sm-showcase-demo-overlay-gap, 2.4rem);
+    padding: var(--sm-showcase-demo-overlay-padding, 4rem);
+    background: var(--sm-showcase-demo-overlay-bg, rgba(45, 15, 7, 0.6));
+    /* inner 默认隐藏时不必采样背后层；保留 inner 时才启用 blur */
+    backdrop-filter: var(--sm-showcase-demo-overlay-live-backdrop, none);
+    -webkit-backdrop-filter: var(--sm-showcase-demo-overlay-live-backdrop, none);
+    z-index: var(--sm-showcase-demo-overlay-z-index, 190);
+}
+
+.sm-showcase-demo-overlay-stage-wrapper {
+    position: relative;
+    width: var(--sm-showcase-demo-overlay-stage-width, 96rem);
+    height: var(--sm-showcase-demo-overlay-stage-height, 50rem);
+    border-radius: var(--sm-showcase-demo-overlay-stage-radius, 3.6rem);
+    background: var(
+        --sm-showcase-demo-overlay-stage-bg,
+        linear-gradient(135deg, rgba(251, 225, 173, 0.8) 0%, rgba(240, 173, 115, 0.8) 100%)
+    );
+    overflow: hidden;
+    box-shadow: var(--sm-showcase-demo-overlay-stage-shadow, inset 0 0.386rem 0.771rem rgba(0, 0, 0, 0.05));
+    flex-shrink: 0;
+}
+
+.sm-showcase-demo-overlay-stage-wrapper .sm-showcase-demo-stage-badge {
+    font-size: var(--sm-showcase-demo-overlay-badge-size, 3rem);
+    padding: var(--sm-showcase-demo-overlay-badge-padding, 1.2rem);
+    line-height: var(--sm-showcase-demo-overlay-badge-line-height, normal);
+}
+
+.sm-showcase-demo-overlay-caption {
+    position: relative;
+    width: 100%;
+    max-width: var(--sm-showcase-demo-overlay-caption-max-width, 96rem);
+    padding: var(--sm-showcase-demo-overlay-caption-padding, 0 4rem);
+    box-sizing: border-box;
+    flex-shrink: 0;
+    font-weight: var(--sm-showcase-demo-overlay-caption-weight, 500);
+    font-size: var(--sm-showcase-demo-overlay-caption-size, 3.6rem);
+    line-height: var(--sm-showcase-demo-overlay-caption-line-height, 1.35);
+    text-align: center;
+    color: var(--sm-showcase-demo-overlay-caption-color, #ffffff);
+}
+
+.sm-showcase-demo-overlay-close {
+    position: absolute;
+    top: var(--sm-showcase-demo-overlay-close-top, 4rem);
+    right: var(--sm-showcase-demo-overlay-close-right, 4.4rem);
+    width: var(--sm-showcase-demo-overlay-close-size, 6.4rem);
+    height: var(--sm-showcase-demo-overlay-close-size, 6.4rem);
+    padding: 0;
+    border: var(--sm-showcase-demo-overlay-close-border, 0.4rem solid #ffffff);
+    border-radius: 50%;
+    background: var(--sm-showcase-demo-overlay-close-bg, #ffffff);
+    color: var(--sm-showcase-demo-overlay-close-color, #6d6d6d);
+    box-shadow: var(--sm-showcase-demo-overlay-close-shadow, 0 2.5rem 5rem -1.2rem rgba(0, 0, 0, 0.25));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 200;
+    transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.sm-showcase-demo-overlay-close svg {
+    width: var(--sm-showcase-demo-overlay-close-icon-size, 3.2rem);
+    height: var(--sm-showcase-demo-overlay-close-icon-size, 3.2rem);
+    display: block;
+}
+
+.sm-showcase-demo-overlay-close:hover {
+    transform: translateY(-0.1rem);
+    box-shadow: var(--sm-showcase-demo-overlay-close-shadow-hover, 0 2.8rem 5.4rem -1.2rem rgba(0, 0, 0, 0.28));
+}
+
+.sm-showcase-demo-overlay-close:active {
+    transform: translateY(0);
+}
+
+.sm-showcase-demo-overlay-close:focus-visible {
+    outline: 0.22rem solid rgba(255, 255, 255, 0.72);
+    outline-offset: 0.2rem;
+}
+
+/* =================== 通用操作按钮 =================== */
+
+.sm-showcase-intro-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: var(--sm-showcase-intro-btn-width, 32rem);
+    height: var(--sm-showcase-intro-btn-height, 6rem);
+    padding: 0 2rem;
+    border: none;
+    border-radius: var(--sm-showcase-intro-btn-radius, 1.6rem);
+    background: var(--sm-showcase-intro-btn-bg, #2b7fff);
+    color: var(--sm-showcase-intro-btn-color, #fff);
+    font-size: var(--sm-showcase-intro-btn-font-size, 2rem);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0.6rem 0 var(--sm-showcase-intro-btn-shadow-color, #165ac1);
+    transition: background 0.15s, box-shadow 0.12s, transform 0.12s;
+}
+
+.sm-showcase-intro-btn:hover,
+.sm-showcase-intro-btn:focus-visible {
+    background: var(--sm-showcase-intro-btn-hover-bg, #2376ef);
+    box-shadow: 0 0.6rem 0 var(--sm-showcase-intro-btn-shadow-color, #165ac1);
+    transform: translateY(-0.1rem);
+}
+
+.sm-showcase-intro-btn:active {
+    background: var(--sm-showcase-intro-btn-active-bg, #1f69d4);
+    box-shadow: 0 0.3rem 0 var(--sm-showcase-intro-btn-shadow-color, #165ac1);
+    transform: translateY(0.2rem);
+}
+
+/* =================== 通用 Guide 卡片列表 =================== */
+
+.sm-showcase-intro-guide-list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm-showcase-guide-list-gap, 2.4rem);
+}
+
+.sm-showcase-intro-guide-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm-showcase-guide-card-gap, 1.6rem);
+    padding: var(--sm-showcase-guide-card-padding, 2.4rem);
+    border-radius: var(--sm-showcase-guide-card-radius, 2.4rem);
+    background: var(--sm-showcase-guide-card-bg, #ffffff);
+    border: var(--sm-showcase-guide-card-border, none);
+    box-shadow: var(--sm-showcase-guide-card-shadow, 0 1.2rem 2.4rem rgba(0,0,0,0.05));
+}
+
+.sm-showcase-intro-guide-card:first-child {
+    flex: 1 1 0;
+    min-height: 0;
+}
+
+.sm-showcase-intro-guide-card:last-child {
+    flex: 0 0 auto;
+    height: auto;
+}
+
+.sm-showcase-intro-guide-card-label {
+    margin: 0;
+    font-size: var(--sm-showcase-guide-card-label-size, 2.8rem);
+    font-weight: var(--sm-showcase-guide-card-label-weight, 600);
+    color: var(--sm-showcase-guide-card-label-color, #1d293d);
+    line-height: normal;
+}
+
+.sm-showcase-intro-guide-card-body {
+    color: var(--sm-showcase-guide-card-body-color, #1d293d);
+    font-size: var(--sm-showcase-guide-card-body-size, 2.4rem);
+    line-height: var(--sm-showcase-guide-card-body-line-height, 1.5);
+}
+
+.sm-showcase-intro-guide-card-body p {
+    margin: 0;
+    text-align: justify;
+    text-align-last: left;
+    text-justify: inter-ideograph;
+}
+
+/* =================== 通用 Ability Chips =================== */
+
+.sm-showcase-intro-ability-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sm-showcase-ability-chips-gap, 1.6rem);
+}
+
+.sm-showcase-intro-ability-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    min-height: var(--sm-showcase-ability-chip-height, 4rem);
+    padding: var(--sm-showcase-ability-chip-padding, 0.4rem 2.2rem);
+    border-radius: var(--sm-showcase-ability-chip-radius, 999rem);
+    background: var(--sm-showcase-ability-chip-bg, rgba(120, 53, 15, 0.1));
+    border: var(--sm-showcase-ability-chip-border, 0.15rem solid rgba(120, 53, 15, 0.2));
+    color: var(--sm-showcase-ability-chip-color, #92400e);
+    font-size: var(--sm-showcase-ability-chip-font-size, 1.8rem);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* 全屏演示打开时冻结内联介绍页：
+   overlay 的 backdrop-filter 会每帧采样背后动态层，内联演示继续播会显著抬高合成成本。
+   弹层可能是介绍屏子节点，也可能挂在 game-shell / body 上（家常乐消消、超市购物等），
+   因此用 document 级 :has 匹配，不依赖 overlay 的挂载位置。
+   默认隐藏 inner 介绍页。关闭隐藏（任一即可）：
+   - JS：setHideInnerIntroOnOverlay(false) / createShowcaseIntroScreen({ hideInnerIntroOnOverlay: false })
+   - 类名：html / body / 介绍屏加 .sm-keep-inner-intro-on-overlay
+   - CSS 变量：--sm-inner-intro-on-overlay-visibility: visible
+   - URL：?hideInnerIntro=0
+   inner 隐藏时 overlay 去掉 backdrop-filter；inner 仍展示时才恢复模糊。
+   关闭 .hidden 后立即恢复。 */
+html {
+    --sm-showcase-demo-overlay-live-backdrop: none;
+}
+
+html.sm-keep-inner-intro-on-overlay,
+body.sm-keep-inner-intro-on-overlay,
+.sm-flow-screen--intro.sm-keep-inner-intro-on-overlay {
+    --sm-inner-intro-on-overlay-visibility: visible;
+    --sm-inner-intro-on-overlay-animation: running;
+}
+
+html.sm-keep-inner-intro-on-overlay,
+body.sm-keep-inner-intro-on-overlay,
+html:has(.sm-flow-screen--intro.sm-keep-inner-intro-on-overlay) {
+    --sm-showcase-demo-overlay-live-backdrop: var(--sm-showcase-demo-overlay-backdrop, blur(8px));
+}
+
+html.sm-keep-inner-intro-on-overlay .sm-showcase-demo-overlay,
+body.sm-keep-inner-intro-on-overlay .sm-showcase-demo-overlay,
+html:has(.sm-flow-screen--intro.sm-keep-inner-intro-on-overlay) .sm-showcase-demo-overlay {
+    will-change: backdrop-filter;
+}
+
+body:has(.sm-showcase-demo-overlay:not(.hidden)) .sm-flow-screen--intro:not(.hidden) > .sm-flow-panel--intro {
+    visibility: var(--sm-inner-intro-on-overlay-visibility, hidden);
+}
+
+body:has(.sm-showcase-demo-overlay:not(.hidden)) .sm-flow-screen--intro:not(.hidden) > .sm-flow-panel--intro,
+body:has(.sm-showcase-demo-overlay:not(.hidden)) .sm-flow-screen--intro:not(.hidden) > .sm-flow-panel--intro * {
+    animation-play-state: var(--sm-inner-intro-on-overlay-animation, paused) !important;
+}
+
+/* overlay 若写在 panel 内（showcaseHtml 拼接），必须从父级 hidden / paused 中捞回来 */
+body:has(.sm-showcase-demo-overlay:not(.hidden)) .sm-flow-screen--intro:not(.hidden) .sm-showcase-demo-overlay:not(.hidden),
+body:has(.sm-showcase-demo-overlay:not(.hidden)) .sm-flow-screen--intro:not(.hidden) .sm-showcase-demo-overlay:not(.hidden) * {
+    visibility: visible;
+    animation-play-state: running !important;
+}
+
+/* 全屏演示打开时压住升级浮层。部分游戏把 toast 挂在 game-shell / body 上（z-index 9999），
+   介绍页手势预热或残留 is-visible 会盖过演示弹层，闪出升级胶囊。
+   选择器带上「介绍屏本身未 hidden」，避免开局后残留 overlay 类名误伤正式升级。
+   overlay 不一定是介绍屏子孙（家常乐消消 / 超市购物挂在 game-shell）。 */
+body:has(.sm-flow-screen--intro:not(.hidden)):has(.sm-showcase-demo-overlay:not(.hidden)) > .sm-game-level-up-toast,
+.game-shell:has(.sm-flow-screen--intro:not(.hidden)):has(.sm-showcase-demo-overlay:not(.hidden)) .sm-game-level-up-toast {
+    visibility: hidden;
+    pointer-events: none;
+}

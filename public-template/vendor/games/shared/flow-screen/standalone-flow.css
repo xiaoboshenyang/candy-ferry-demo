@@ -1,0 +1,2062 @@
+.sm-flow-screen {
+    --sm-flow-bg: linear-gradient(180deg, rgba(247, 244, 235, 0.95), rgba(229, 221, 207, 0.95));
+    --sm-flow-panel-bg: rgba(255, 251, 244, 0.96);
+    --sm-flow-panel-border: rgba(160, 145, 126, 0.18);
+    --sm-flow-shadow: 0 2rem 4.8rem rgba(72, 56, 40, 0.14);
+    --sm-flow-title: #3f2d1f;
+    --sm-flow-text: #5f5145;
+    --sm-flow-muted: #8a7868;
+    --sm-flow-card-bg: rgba(255, 255, 255, 0.82);
+    --sm-flow-card-border: rgba(160, 145, 126, 0.12);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.8rem;
+    background: var(--sm-flow-bg);
+    z-index: 120;
+    pointer-events: auto;
+}
+
+.sm-flow-panel {
+    width: min(118rem, 100%);
+    /* border-radius: 3.6rem; */
+    border: 0.18rem solid var(--sm-flow-panel-border);
+    background: var(--sm-flow-panel-bg);
+    box-shadow: var(--sm-flow-shadow);
+}
+
+.sm-flow-panel--loading {
+    width: min(54rem, calc(100vw - 4.8rem));
+    padding: 3.2rem;
+}
+
+.sm-flow-screen--intro {
+    --sm-flow-intro-screen-padding: 2.8rem;
+    --sm-flow-intro-panel-width: min(118rem, 100%);
+    --sm-flow-intro-panel-height: auto;
+    --sm-flow-intro-panel-min-height: min(72rem, calc(100vh - 5.6rem));
+    --sm-flow-intro-panel-padding: 3.2rem;
+    --sm-flow-intro-panel-gap: 2.4rem;
+    --sm-flow-intro-panel-rows: auto auto 1fr auto;
+    --sm-flow-intro-main-width: 108rem;
+    --sm-flow-intro-main-height: 100%;
+    --sm-flow-intro-main-margin: 0 auto;
+    --sm-flow-intro-main-gap: 2.6rem;
+    --sm-flow-intro-main-align: center;
+    --sm-flow-intro-main-justify: flex-start;
+    --sm-flow-intro-content-display: grid;
+    --sm-flow-intro-content-direction: row;
+    --sm-flow-intro-content-width: 108rem;
+    --sm-flow-intro-content-height: 44.8rem;
+    --sm-flow-intro-content-min-width: 0;
+    --sm-flow-intro-content-min-height: 49.6rem;
+    --sm-flow-intro-content-gap: 3.2rem;
+    --sm-flow-intro-content-align: stretch;
+    --sm-flow-intro-content-flex: 0 0 auto;
+    --sm-flow-intro-content-grid-columns: 52.8rem 52rem;
+    --sm-flow-intro-content-grid-rows: none;
+    --sm-flow-intro-main-actions-width: 100%;
+    --sm-flow-intro-main-actions-direction: row;
+    --sm-flow-intro-main-actions-align: center;
+    --sm-flow-intro-main-actions-justify: center;
+    --sm-flow-intro-main-actions-gap: 1.6rem;
+    padding: 0;
+}
+
+.sm-flow-panel--intro {
+    width: var(--sm-flow-intro-panel-width);
+    height: 100%;
+    min-height: var(--sm-flow-intro-panel-min-height);
+    padding: 1.6rem;
+    display: grid;
+    grid-template-rows: var(--sm-flow-intro-panel-rows);
+    gap: var(--sm-flow-intro-panel-gap);
+    /* 介绍面板不用 backdrop-filter：全屏演示 overlay 在 inner 仍展示时才开一层 blur，
+       两层 backdrop-filter 叠在一起会让合成器每帧读回两次，移动端明显卡顿。
+       介绍页背景模糊改由各游戏 ::before { filter: blur() } 承担。 */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.sm-flow-loading-brand {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+.sm-flow-loading-icon {
+    width: 8.4rem;
+    height: 8.4rem;
+    border-radius: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: inset 0 0.2rem 0.4rem rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+}
+
+.sm-flow-loading-icon img,
+.sm-flow-loading-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sm-flow-loading-copy {
+    min-width: 0;
+}
+
+.sm-flow-loading-title {
+    margin: 0;
+    font-size: 3.8rem;
+    line-height: 1.1;
+    font-weight: 800;
+    color: var(--sm-flow-title);
+}
+
+.sm-flow-loading-subtitle {
+    margin: 0.6rem 0 0;
+    font-size: 1.6rem;
+    color: var(--sm-flow-muted);
+}
+
+.sm-flow-loading-visual {
+    margin-top: 2.2rem;
+    min-height: 18rem;
+    border-radius: 2.8rem;
+    background: var(--sm-flow-card-bg);
+    border: 0.14rem solid var(--sm-flow-card-border);
+    box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.65);
+    overflow: hidden;
+}
+
+.sm-flow-loading-status {
+    margin: 1.8rem 0 0;
+    font-size: 1.85rem;
+    color: var(--sm-flow-text);
+    text-align: center;
+}
+
+.sm-game-loading-panel.sm-flow-panel--loading {
+    width: min(62rem, calc(100vw - 4.8rem));
+    padding: 3rem;
+}
+
+.sm-game-loading-panel .sm-flow-loading-brand {
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.sm-game-loading-panel .sm-flow-loading-icon {
+    width: 8.8rem;
+    height: 8.8rem;
+    border-radius: 2.6rem;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: inset 0 0.16rem 0.4rem rgba(255, 255, 255, 0.6);
+}
+
+.sm-game-loading-brand-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sm-game-loading-brand-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 4.4rem;
+    line-height: 1;
+    border-radius: inherit;
+    background:
+        radial-gradient(circle at 28% 24%, rgba(255,255,255,0.82), rgba(255,255,255,0) 36%),
+        linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.62));
+}
+
+.sm-game-loading-screen {
+    z-index: 140;
+}
+
+.sm-game-loading-scene {
+    position: relative;
+    min-height: 22rem;
+    padding: 2rem 2.2rem;
+    background:
+        radial-gradient(circle at 16% 18%, rgba(255,255,255,0.88), rgba(255,255,255,0) 34%),
+        linear-gradient(180deg, var(--sm-game-loading-surface, rgba(255,255,255,0.9)), rgba(255,255,255,0.76));
+    overflow: hidden;
+}
+
+.sm-game-loading-scene--hero {
+    min-height: 100%;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.sm-game-loading-scene-photo,
+.sm-game-loading-scene-dim {
+    position: absolute;
+    inset: 0;
+}
+
+.sm-game-loading-scene-photo {
+    background-image: var(--sm-game-loading-scene-bg);
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.02);
+}
+
+.sm-game-loading-scene-dim {
+    background:
+        radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0) 36%),
+        linear-gradient(180deg, rgba(255, 246, 236, 0.22) 0%, rgba(113, 78, 50, 0.16) 100%);
+}
+
+.sm-game-loading-scene-hero-copy {
+    position: absolute;
+    left: 50%;
+    bottom: 16rem;
+    transform: translateX(-50%);
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    width: min(48rem, calc(100vw - 8rem));
+    z-index: 1;
+}
+
+.sm-game-loading-scene-hero-title {
+    font-size: clamp(3rem, 4vw, 4.8rem);
+    line-height: 1.1;
+    font-weight: 800;
+    color: #412a1d;
+    text-shadow: 0 0.3rem 0.8rem rgba(255, 255, 255, 0.48);
+}
+
+.sm-game-loading-scene-hero-hint {
+    font-size: 1.7rem;
+    color: rgba(65, 42, 29, 0.78);
+    text-align: center;
+}
+
+.sm-game-loading-scene-glow {
+    position: absolute;
+    inset: auto -8% 10% auto;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 50%;
+    background: var(--sm-game-loading-glow, rgba(125, 211, 252, 0.26));
+    filter: blur(1rem);
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.sm-game-loading-badges {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.sm-game-loading-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.4rem;
+    padding: 0 1.3rem;
+    border-radius: 999rem;
+    background: var(--sm-game-loading-badge-bg, rgba(255, 255, 255, 0.84));
+    color: var(--sm-game-loading-accent-strong, #2563eb);
+    font-size: 1.42rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow: 0 0.6rem 1.4rem rgba(15, 23, 42, 0.08);
+}
+
+.sm-game-loading-track {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.6rem;
+    margin-top: 3.2rem;
+}
+
+.sm-game-loading-node {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 1.8rem;
+    background: rgba(255, 255, 255, 0.96);
+    font-size: 2.8rem;
+    box-shadow: 0 0.9rem 1.8rem rgba(15, 23, 42, 0.1);
+}
+
+.sm-game-loading-runline {
+    position: relative;
+    height: 1.2rem;
+    border-radius: 999rem;
+    background: linear-gradient(90deg, rgba(255,255,255,0.3), var(--sm-game-loading-track, rgba(59,130,246,0.72)));
+    overflow: hidden;
+}
+
+.sm-game-loading-runline::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 -24%;
+    width: 32%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.84), rgba(255,255,255,0));
+    animation: smGameLoadingShimmer 1.6s ease-in-out infinite;
+}
+
+.sm-game-loading-runner {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-10%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 1.6rem;
+    background: var(--sm-game-loading-runner-bg, rgba(255,255,255,0.96));
+    font-size: 2.4rem;
+    box-shadow: 0 0.8rem 1.8rem rgba(15, 23, 42, 0.14);
+    animation: smGameLoadingRunner 2.2s ease-in-out infinite;
+}
+
+.sm-game-loading-progress {
+    margin-top: 1.8rem;
+}
+
+.sm-game-loading-progress-track {
+    position: relative;
+    height: 1.2rem;
+    border-radius: 999rem;
+    background: rgba(148, 163, 184, 0.22);
+    overflow: hidden;
+}
+
+.sm-game-loading-progress-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--sm-game-loading-accent, #60a5fa), var(--sm-game-loading-accent-strong, #2563eb));
+    box-shadow: 0 0.4rem 1.2rem rgba(37, 99, 235, 0.26);
+    transition: width 180ms ease;
+}
+
+.sm-game-loading-progress-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-top: 0.9rem;
+    color: var(--sm-flow-muted);
+    font-size: 1.45rem;
+}
+
+.sm-game-loading-progress-hint {
+    font-weight: 600;
+}
+
+.sm-game-loading-progress-value {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--sm-game-loading-accent-strong, #2563eb);
+}
+
+.sm-game-loading-theme--generic {
+    --sm-game-loading-accent: #60a5fa;
+    --sm-game-loading-accent-strong: #2563eb;
+    --sm-game-loading-track: rgba(96, 165, 250, 0.72);
+    --sm-game-loading-glow: rgba(96, 165, 250, 0.3);
+    --sm-game-loading-surface: rgba(239, 246, 255, 0.92);
+    --sm-game-loading-badge-bg: rgba(255, 255, 255, 0.86);
+}
+
+.sm-game-loading-theme--garden-walk {
+    --sm-game-loading-accent: #84cc16;
+    --sm-game-loading-accent-strong: #2f7d32;
+    --sm-game-loading-track: rgba(132, 204, 22, 0.76);
+    --sm-game-loading-glow: rgba(163, 230, 53, 0.3);
+    --sm-game-loading-surface: rgba(240, 253, 224, 0.92);
+    --sm-game-loading-badge-bg: rgba(255, 255, 255, 0.9);
+}
+
+.sm-game-loading-theme--find-same {
+    --sm-game-loading-accent: #f2a34e;
+    --sm-game-loading-accent-strong: #b76314;
+    --sm-game-loading-track: rgba(191, 113, 38, 0.82);
+    --sm-game-loading-glow: rgba(252, 211, 77, 0.28);
+    --sm-game-loading-surface: rgba(248, 235, 226, 0.94);
+    --sm-game-loading-badge-bg: rgba(255, 248, 242, 0.92);
+}
+
+.sm-game-loading-theme--find-same.sm-flow-screen--loading {
+    background: var(--find-same-bg-image) center/cover no-repeat;
+}
+
+.sm-game-loading-theme--where-is-it {
+    --sm-game-loading-accent: #fb923c;
+    --sm-game-loading-accent-strong: #c85e13;
+    --sm-game-loading-track: rgba(251, 146, 60, 0.76);
+    --sm-game-loading-glow: rgba(251, 191, 36, 0.26);
+    --sm-game-loading-surface: rgba(255, 240, 223, 0.92);
+    --sm-game-loading-badge-bg: rgba(255, 255, 255, 0.9);
+}
+
+.sm-game-loading-theme--where-is-it.sm-flow-screen--loading {
+    padding: 0;
+    background: #ffba00;
+}
+
+.sm-game-loading-theme--where-is-it .sm-game-loading-poster {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.sm-game-loading-theme--where-is-it .sm-game-loading-poster-scene,
+.sm-game-loading-theme--where-is-it .sm-game-loading-poster-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.sm-game-loading-theme--where-is-it .sm-game-loading-poster-scene {
+    background-image: var(--sm-game-loading-poster-bg);
+    background-position: center;
+    background-size: cover;
+    transform: scale(1.01);
+}
+
+.sm-game-loading-theme--where-is-it .sm-game-loading-poster-overlay {
+    background-image: linear-gradient(180deg, rgba(255, 229, 102, 0.55) 0%, rgba(255, 186, 0, 0.65) 100%);
+}
+
+.sm-game-loading-theme--where-is-it .sm-game-loading-poster-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.2rem;
+    width: 100%;
+    height: 100%;
+    padding: 2.4rem;
+}
+
+.sm-game-loading-theme--where-is-it .sm-game-loading-poster-icon {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 2.7rem;
+    background-color: rgba(255, 255, 255, 0.12);
+    background-image: var(--sm-game-loading-poster-icon);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sm-game-loading-theme--where-is-it .sm-game-loading-poster-title {
+    margin: 0;
+    color: #622616;
+    font-size: clamp(4rem, 4.8vw, 4.8rem);
+    line-height: 1.15;
+    font-weight: 600;
+    text-align: center;
+}
+
+.sm-game-loading-theme--attention-game {
+    --sm-game-loading-accent: #84cc16;
+    --sm-game-loading-accent-strong: #4c7145;
+    --sm-game-loading-track: rgba(132, 204, 22, 0.76);
+    --sm-game-loading-glow: rgba(163, 230, 53, 0.3);
+    --sm-game-loading-surface: rgba(240, 253, 224, 0.92);
+    --sm-game-loading-badge-bg: rgba(255, 255, 255, 0.9);
+}
+
+.sm-game-loading-theme--line-color-connect {
+    --sm-game-loading-accent: #84cc16;
+    --sm-game-loading-accent-strong: #4c7145;
+    --sm-game-loading-track: rgba(132, 204, 22, 0.76);
+    --sm-game-loading-glow: rgba(163, 230, 53, 0.3);
+    --sm-game-loading-surface: rgba(240, 253, 224, 0.92);
+    --sm-game-loading-badge-bg: rgba(255, 255, 255, 0.9);
+}
+
+.sm-game-loading-theme--housework {
+    --sm-game-loading-accent: #fb923c;
+    --sm-game-loading-accent-strong: #c85e13;
+    --sm-game-loading-track: rgba(251, 146, 60, 0.76);
+    --sm-game-loading-glow: rgba(251, 191, 36, 0.26);
+    --sm-game-loading-surface: rgba(255, 247, 237, 0.92);
+    --sm-game-loading-badge-bg: rgba(255, 255, 255, 0.92);
+}
+
+.sm-game-loading-theme--housework.sm-flow-screen--loading {
+    padding: 0;
+    background: #f7c8b0;
+}
+
+.sm-game-loading-theme--housework .sm-game-loading-poster {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.sm-game-loading-theme--housework .sm-game-loading-poster-scene,
+.sm-game-loading-theme--housework .sm-game-loading-poster-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.sm-game-loading-theme--housework .sm-game-loading-poster-scene {
+    background-image: var(--sm-game-loading-poster-bg);
+    background-position: center;
+    background-size: cover;
+    transform: scale(1.01);
+}
+
+.sm-game-loading-theme--housework .sm-game-loading-poster-overlay {
+    background-image: linear-gradient(147.995deg, rgba(255, 178, 154, 0.6) 0%, rgba(255, 153, 107, 0.6) 100%);
+}
+
+.sm-game-loading-theme--housework .sm-game-loading-poster-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.2rem;
+    width: 100%;
+    height: 100%;
+    padding: 2.4rem;
+}
+
+.sm-game-loading-theme--housework .sm-game-loading-poster-icon {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 2.7rem;
+    background-color: rgba(255, 255, 255, 0.12);
+    background-image: var(--sm-game-loading-poster-icon);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sm-game-loading-theme--housework .sm-game-loading-poster-title {
+    margin: 0;
+    color: #622616;
+    font-size: clamp(4rem, 4.8vw, 4.8rem);
+    line-height: 1.15;
+    font-weight: 600;
+    text-align: center;
+}
+
+@keyframes smGameLoadingRunner {
+    0% {
+        left: 0;
+        transform: translate(-10%, -50%) scale(0.96);
+    }
+    50% {
+        left: 100%;
+        transform: translate(-90%, -50%) scale(1.04);
+    }
+    100% {
+        left: 0;
+        transform: translate(-10%, -50%) scale(0.96);
+    }
+}
+
+@keyframes smGameLoadingShimmer {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(420%);
+    }
+}
+
+.sm-flow-top {
+    min-width: 0;
+}
+
+.sm-flow-lead {
+    min-width: 0;
+}
+
+.sm-flow-main {
+    width: var(--sm-flow-intro-main-width);
+    height: var(--sm-flow-intro-main-height);
+    margin: var(--sm-flow-intro-main-margin);
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: var(--sm-flow-intro-main-align);
+    justify-content: var(--sm-flow-intro-main-justify);
+    gap: var(--sm-flow-intro-main-gap);
+}
+
+.sm-flow-main-content {
+    min-width: var(--sm-flow-intro-content-min-width);
+    min-height: var(--sm-flow-intro-content-min-height);
+    width: var(--sm-flow-intro-content-width);
+    height: var(--sm-flow-intro-content-height);
+    display: var(--sm-flow-intro-content-display);
+    flex-direction: var(--sm-flow-intro-content-direction);
+    align-items: var(--sm-flow-intro-content-align);
+    gap: var(--sm-flow-intro-content-gap);
+    flex: var(--sm-flow-intro-content-flex);
+    grid-template-columns: var(--sm-flow-intro-content-grid-columns);
+    grid-template-rows: var(--sm-flow-intro-content-grid-rows);
+}
+
+.sm-flow-main-content--single {
+    display: block;
+}
+
+.sm-flow-slot {
+    min-width: 0;
+    min-height: 0;
+    flex: 1 1 0;
+}
+
+.sm-flow-main-actions {
+    width: var(--sm-flow-intro-main-actions-width);
+    display: flex;
+    flex-direction: var(--sm-flow-intro-main-actions-direction);
+    align-items: var(--sm-flow-intro-main-actions-align);
+    justify-content: var(--sm-flow-intro-main-actions-justify);
+    gap: var(--sm-flow-intro-main-actions-gap);
+    flex: 0 0 auto;
+}
+
+.sm-flow-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+}
+
+.sm-flow-card {
+    background: var(--sm-flow-card-bg);
+    border: 0.14rem solid var(--sm-flow-card-border);
+    border-radius: 2.6rem;
+    box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.65);
+}
+
+.sm-session-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 160;
+    pointer-events: none;
+}
+
+.sm-session-overlay,
+.sm-session-result-screen {
+    position: absolute;
+    inset: 0;
+    pointer-events: auto;
+}
+
+.sm-session-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20, 24, 32, 0.34);
+    backdrop-filter: blur(8px);
+    will-change: backdrop-filter;
+}
+
+/* 3-2-1 期间背景必须静止并回到 CSS 原位，倒计时层自身的数字动画不受影响。 */
+.sm-session-countdown-active > :not(.sm-session-layer),
+.sm-session-countdown-active > :not(.sm-session-layer) * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+}
+
+/* 冻结 warning 闪烁后，只把顶栏计时器强制回白色，不影响得分/关卡等其它文字色。 */
+.sm-session-countdown-active #timerDisplay {
+    color: #ffffff !important;
+}
+
+.sm-session-overlay--dialog {
+    background: rgba(45, 15, 7, 0.6);
+}
+
+.sm-session-overlay--timeup {
+    background: rgba(45, 15, 7, 0.6);
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.sm-session-timeup-title {
+    font-size: 12.8rem;
+    font-weight: 600;
+    color: #fcce47;
+    margin: 0;
+    text-align: center;
+    line-height: 1;
+    text-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.3);
+}
+
+.sm-session-timeup-text {
+    font-size: 3.2rem;
+    color: #fff;
+    margin: 0;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.sm-session-countdown-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2.5rem 5rem -1.2rem rgba(0, 0, 0, 0.25);
+    animation: sm-countdown-panel-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sm-session-countdown-number {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 12.8rem;
+    line-height: 1;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    transform-origin: center center;
+    will-change: transform, opacity;
+}
+
+.sm-session-countdown-number--go {
+    font-size: 6.4rem;
+    letter-spacing: 0.08em;
+    text-indent: 0.08em;
+}
+
+.sm-session-countdown-number.sm-session-countdown-pop {
+    animation: sm-countdown-number-pop 0.3s ease-out;
+}
+
+@keyframes sm-countdown-panel-pop {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes sm-countdown-number-pop {
+    0% { transform: scale(1.18); opacity: 0.58; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.sm-session-dialog-card {
+    width: 64rem;
+    height: 48rem;
+    max-width: calc(100vw - 4rem);
+    max-height: calc(100vh - 4rem);
+    padding: 6.1rem 4.8rem;
+    border-radius: 3.2rem;
+    background: #ffffff;
+    box-shadow: 0 2.5rem 5rem rgba(0, 0, 0, 0.25);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.7rem;
+    box-sizing: border-box;
+}
+
+.sm-session-dialog-body {
+    width: 30.4rem;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.4rem;
+}
+
+.sm-session-dialog-icon {
+    width: 9.6rem;
+    height: 9.6rem;
+    border-radius: 50%;
+    background: #2b7fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1.2rem 1.8rem rgba(0, 0, 0, 0.1), 0 0.48rem 0.72rem rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.sm-session-dialog-icon svg {
+    width: 4.8rem;
+    height: 4.8rem;
+}
+
+.sm-session-dialog-title-wrap {
+    width: 100%;
+    min-height: 9.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sm-session-dialog-title {
+    margin: 0;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 3.6rem;
+    color: #1d293d;
+    letter-spacing: 0.04rem;
+}
+
+.sm-session-timeup-card {
+    width: min(56rem, calc(100vw - 4rem));
+    padding: 3.6rem 4rem 3.2rem;
+}
+
+.sm-session-timeup-text {
+    margin: 1.6rem 0 0;
+    font-size: 2rem;
+    line-height: 1.6;
+    color: #5b4a3f;
+}
+
+.sm-session-dialog-actions {
+    display: flex;
+    align-items: stretch;
+    gap: 1.6rem;
+    width: 100%;
+}
+
+.sm-session-dialog-btn {
+    flex: 1;
+    min-width: 0;
+    min-height: 6rem;
+    padding: 1.6rem 2rem;
+    border: none;
+    border-radius: 1.6rem;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.sm-session-dialog-btn-label {
+    display: block;
+    font-weight: 600;
+    line-height: 2.8rem;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.sm-session-dialog-btn-label--secondary {
+    font-size: 2.4rem;
+    color: #3f516a;
+}
+
+.sm-session-dialog-btn-label--primary {
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.sm-session-dialog-btn--secondary {
+    background: #eff6ff;
+    box-shadow: 0 0.6rem 0 0 #bacde6;
+}
+
+.sm-session-dialog-btn--primary {
+    background: #2b7fff;
+    box-shadow: 0 0.6rem 0 0 #165ac1;
+}
+
+.sm-session-dialog-btn:active,
+.sm-session-result-continue:active {
+    transform: scale(0.97);
+}
+
+.sm-session-result-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.4rem;
+    background: rgba(232, 228, 222, 0.96);
+}
+
+.sm-session-result-shell {
+    width: min(118rem, 100%);
+    max-height: 100%;
+    display: grid;
+    gap: 2rem;
+}
+
+.sm-session-result-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.sm-session-result-brand {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.sm-session-result-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8.6rem;
+    height: 8.6rem;
+    border-radius: 2.2rem;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 0.8rem 1.8rem rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+    font-size: 4.8rem;
+}
+
+.sm-session-result-icon img,
+.sm-session-result-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sm-session-result-copy {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.sm-session-result-title {
+    margin: 0;
+    font-size: 4.2rem;
+    line-height: 1.1;
+    font-weight: 800;
+    color: #111827;
+}
+
+.sm-session-result-ability {
+    width: fit-content;
+    min-height: 4.4rem;
+    padding: 0 1.8rem;
+    border-radius: 1.2rem;
+    background: rgba(0, 0, 0, 0.12);
+    color: #374151;
+    font-size: 2.1rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sm-session-result-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 28rem;
+    gap: 2.4rem;
+    align-items: center;
+}
+
+.sm-session-result-board-card {
+    padding: 2.6rem 2.8rem;
+    border-radius: 2.8rem;
+    background: #ffffff;
+    border: 0.3rem solid #ebd4bc;
+    border-bottom: 0.6rem solid #d3aa8a;
+    box-shadow: 0 0.6rem 0 rgba(0, 0, 0, 0.06);
+}
+
+.sm-session-result-row {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+.sm-session-result-row + .sm-session-result-row {
+    margin-top: 1.7rem;
+}
+
+.sm-session-result-row-label {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #111827;
+    text-align: left;
+}
+
+.sm-session-result-row-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 4.8rem;
+    padding: 0 1.8rem;
+    border-radius: 1.5rem;
+    color: #ffffff;
+    font-size: 2.1rem;
+    font-weight: 800;
+    box-shadow: inset 0 0.12rem 0 rgba(255, 255, 255, 0.42);
+}
+
+.sm-session-result-row--level-1 .sm-session-result-row-bar {
+    background: linear-gradient(90deg, #bc0000 0%, #d70000 100%);
+}
+
+.sm-session-result-row--level-2 .sm-session-result-row-bar {
+    background: linear-gradient(90deg, #7c07d7 0%, #b312ff 100%);
+}
+
+.sm-session-result-row--level-3 .sm-session-result-row-bar {
+    background: linear-gradient(90deg, #62b400 0%, #6dc500 100%);
+}
+
+.sm-session-result-row--level-4 .sm-session-result-row-bar {
+    background: linear-gradient(90deg, #db7b00 0%, #ea8700 100%);
+}
+
+.sm-session-result-row--level-5 .sm-session-result-row-bar {
+    background: linear-gradient(90deg, #166ee7 0%, #2385ff 100%);
+}
+
+.sm-session-result-row--level-6 .sm-session-result-row-bar {
+    background: linear-gradient(90deg, #e0c400 0%, #f0d100 100%);
+    color: #fffdf5;
+}
+
+.sm-session-result-row-score {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 4rem;
+}
+
+.sm-session-result-row-metrics {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    font-size: 2rem;
+    color: #1f2937;
+}
+
+.sm-session-result-metric {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.sm-session-result-side {
+    display: grid;
+    justify-items: center;
+    gap: 2.2rem;
+}
+
+.sm-session-result-status {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.sm-session-result-score-card {
+    width: 18rem;
+    min-height: 20rem;
+    padding: 2.2rem 1.6rem;
+    border-radius: 2.4rem;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 1.4rem 3.6rem rgba(15, 23, 42, 0.08);
+    display: grid;
+    align-content: center;
+    gap: 1.6rem;
+    text-align: center;
+}
+
+.sm-session-result-score-label {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #111827;
+}
+
+.sm-session-result-score-value {
+    font-size: 5.2rem;
+    line-height: 1;
+    font-weight: 800;
+    color: #111827;
+}
+
+.sm-session-result-continue {
+    min-width: 18rem;
+    height: 6rem;
+    border: none;
+    border-radius: 999rem;
+    background: #bdbdbd;
+    color: #111827;
+    font-size: 2.4rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.sm-session-result-screen--report-card {
+    padding: 2.6rem;
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 36%),
+        linear-gradient(180deg, #efe7dd 0%, #dfd3c4 100%);
+}
+
+/* 结果页全屏背景图 */
+.sm-session-result-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.sm-session-result-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sm-session-result-bg-img[src=""] {
+    display: none;
+}
+
+.sm-session-result-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(148deg, rgba(248, 165, 91, 0.1) 0%, rgba(246, 200, 160, 0.1) 100%);
+}
+
+.sm-session-result-shell--report-card {
+    position: relative;
+    z-index: 1;
+    width: min(118rem, 100%);
+    max-height: 100%;
+    height: 100%;
+    display: grid;
+    gap: 2.4rem;
+}
+
+.sm-session-result-header--report-card {
+    justify-content: center;
+}
+
+.sm-session-result-heading {
+    font-size: clamp(3.4rem, 4.2vw, 4.8rem);
+    line-height: 1.1;
+    font-weight: 800;
+    color: #40291d;
+    text-align: center;
+}
+
+.sm-session-result-layout--report-card {
+    grid-template-columns: minmax(32rem, 38rem) minmax(0, 1fr);
+    gap: 2.4rem;
+    align-items: stretch;
+}
+
+.sm-session-result-side--report-card {
+    display: grid;
+    gap: 1.8rem;
+    justify-items: stretch;
+    align-content: start;
+}
+
+.sm-session-result-brand-card {
+    position: relative;
+    min-height: 26rem;
+    border-radius: 3.2rem;
+    overflow: hidden;
+    background: #dac1a7;
+    box-shadow: 0 1.8rem 4.6rem rgba(62, 46, 31, 0.12);
+}
+
+.sm-session-result-brand-card-bg,
+.sm-session-result-brand-card-mask {
+    position: absolute;
+    inset: 0;
+}
+
+.sm-session-result-brand-card-bg {
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.02);
+}
+
+.sm-session-result-brand-card-mask {
+    background:
+        linear-gradient(180deg, rgba(37, 25, 16, 0.04) 0%, rgba(37, 25, 16, 0.3) 100%),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.18) 55%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+.sm-session-result-brand-card-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 2.2rem;
+    display: flex;
+    align-items: flex-start;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-brand {
+    align-items: flex-start;
+    width: min(100%, 31rem);
+    padding: 1.8rem;
+    border-radius: 2.6rem;
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: 0 1rem 2.4rem rgba(54, 36, 24, 0.12);
+    backdrop-filter: blur(8px);
+    will-change: backdrop-filter;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-icon {
+    width: 7.6rem;
+    height: 7.6rem;
+    border-radius: 2.2rem;
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.sm-session-result-screen--report-card .sm-session-result-copy {
+    gap: 1rem;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-title {
+    font-size: 3.2rem;
+    color: #2f1d12;
+}
+
+.sm-session-result-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.sm-session-result-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    min-height: 3.6rem;
+    padding: 0 1.3rem;
+    border-radius: 999rem;
+    background: rgba(255, 255, 255, 0.86);
+    color: #5b402d;
+    font-size: 1.45rem;
+    font-weight: 700;
+    box-shadow: inset 0 0.1rem 0.22rem rgba(255, 255, 255, 0.62);
+}
+
+.sm-session-result-score-card--report-card {
+    width: 100%;
+    min-height: 20rem;
+    border-radius: 3rem;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 1.4rem 3.8rem rgba(54, 36, 24, 0.1);
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-label {
+    font-size: 2.8rem;
+    color: #503827;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-value {
+    font-size: 6rem;
+    color: #2d7cf6;
+}
+
+.sm-session-result-board-card--report-card {
+    height: 60rem;
+    padding: 2.8rem 3rem;
+    border-radius: 3.2rem;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row {
+    grid-template-columns: 7.8rem minmax(0, 1fr) auto;
+    gap: 1.6rem;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row + .sm-session-result-row {
+    margin-top: 1.5rem;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row-label {
+    font-size: 2rem;
+    color: #452f21;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row-bar {
+    min-height: 5.2rem;
+    border-radius: 1.8rem;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row-metrics {
+    gap: 1.2rem;
+    font-size: 1.85rem;
+}
+
+.sm-session-result-actions--report-card {
+    display: flex;
+    justify-content: center;
+}
+
+.sm-session-result-continue--report-card {
+    min-width: 24rem;
+    height: 6.6rem;
+    background: linear-gradient(180deg, #ffb156 0%, #ff8b1f 100%);
+    color: #fff7ef;
+    box-shadow: 0 1rem 2.4rem rgba(255, 139, 31, 0.28);
+}
+
+/* =================== Shared Report Card Refine =================== */
+.sm-session-result-row-bar {
+    min-height: auto;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.sm-session-result-row-track {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 2.4rem;
+    padding: 0 1.2rem;
+    border-radius: 999rem;
+    background: #e2e8f0;
+    overflow: hidden;
+}
+
+.sm-session-result-row-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--result-fill-width, 0%);
+    border-radius: inherit;
+}
+
+.sm-session-result-row-score {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 3ch;
+    color: #475b75;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+}
+
+.sm-session-result-row-metrics {
+    --sm-session-result-metrics-gap: 1.4rem;
+    --sm-session-result-metrics-width: 16.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--sm-session-result-metrics-gap);
+    width: var(--sm-session-result-metrics-width);
+    flex-shrink: 0;
+}
+
+.sm-session-result-metric {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 0 0 calc((var(--sm-session-result-metrics-width) - var(--sm-session-result-metrics-gap)) / 2);
+    min-width: 0;
+    gap: 0.8rem;
+    color: #475b75;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+}
+
+.sm-session-result-metric-icon {
+    flex: 0 0 3.2rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sm-session-result-metric-icon-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.sm-session-result-metric-value {
+    display: inline-flex;
+    align-items: center;
+    min-width: 2ch;
+    line-height: 1;
+}
+
+.sm-session-result-row--level-1 .sm-session-result-row-fill {
+    background: linear-gradient(90deg, #bc0000 0%, #d70000 100%);
+}
+
+.sm-session-result-row--level-2 .sm-session-result-row-fill {
+    background: linear-gradient(90deg, #7c07d7 0%, #b312ff 100%);
+}
+
+.sm-session-result-row--level-3 .sm-session-result-row-fill {
+    background: linear-gradient(90deg, #62b400 0%, #6dc500 100%);
+}
+
+.sm-session-result-row--level-4 .sm-session-result-row-fill {
+    background: linear-gradient(90deg, #db7b00 0%, #ea8700 100%);
+}
+
+.sm-session-result-row--level-5 .sm-session-result-row-fill {
+    background: linear-gradient(90deg, #166ee7 0%, #2385ff 100%);
+}
+
+.sm-session-result-row--level-6 .sm-session-result-row-fill {
+    background: linear-gradient(90deg, #e0c400 0%, #f0d100 100%);
+}
+
+/* =================== Report Card - 整体屏幕 =================== */
+.sm-session-result-screen--report-card {
+    padding: 1.2rem;
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 36%),
+        linear-gradient(180deg, #efe7dd 0%, #dfd3c4 100%);
+}
+
+/* Shell 容器 - flex列布局 */
+.sm-session-result-shell--report-card {
+    position: relative;
+    width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* =================== Report Card - 顶部栏（木纹风格） =================== */
+.sm-session-result-header--report-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 8rem;
+    position: relative;
+    flex-shrink: 0;
+    padding: 0 2.4rem;
+}
+
+/* =================== 通用返回按钮 =================== */
+.sm-back-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 6.4rem;
+    height: 6.4rem;
+    padding: 0;
+    border: 0.3rem solid #683016;
+    border-radius: 1.6rem;
+    background: linear-gradient(180deg, #c57e56 0%, #7c3c20 100%);
+    box-shadow:
+        0 0.4rem 0.8rem rgba(0, 0, 0, 0.15),
+        inset 0 0.8rem 0.9rem rgba(159, 84, 51, 0.95);
+    cursor: pointer;
+    overflow: hidden;
+    transition: filter 0.18s ease;
+}
+
+.sm-back-btn:hover {
+    filter: brightness(1.03);
+}
+
+.sm-back-btn:active {
+    transform: translateY(0.1rem);
+}
+
+.sm-session-result-back:active {
+    transform: translateY(calc(-50% + 0.1rem));
+}
+
+.sm-back-btn__icon {
+    position: relative;
+    display: block;
+    width: 3.2rem;
+    height: 3.2rem;
+    z-index: 1;
+    background: var(--sm-shared-back-arrow-image, none) no-repeat center / contain;
+}
+
+/* 返回按钮 - 结果页定位 */
+.sm-session-result-back {
+    position: absolute;
+    left: 2.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sm-session-result-back--daily {
+    width: auto;
+    padding: 0 1.6rem;
+    gap: 0.8rem;
+}
+
+.sm-session-result-back--daily .sm-back-btn__icon {
+    flex: 0 0 3.2rem;
+}
+
+.sm-session-result-back-label {
+    display: inline-flex;
+    align-items: center;
+    color: #ffffff;
+    white-space: nowrap;
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* 标题 - 木纹药丸形 */
+.sm-session-result-heading {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 5.6rem;
+    padding: 0.5rem 2.4rem;
+    border: 0.3rem solid #683016;
+    border-radius: 3rem;
+    background: linear-gradient(to bottom, #c57e56, #7c3c20);
+    box-shadow:
+        0 0.4rem 0.8rem rgba(0, 0, 0, 0.15),
+        inset 0 0.8rem 0.9rem #9f5433;
+    color: #ffffff;
+    font-size: 3.2rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1;
+    width: auto;
+    text-shadow: none;
+}
+
+/* =================== Report Card - 主布局（flex横排） =================== */
+.sm-session-result-layout--report-card {
+    display: flex;
+    flex-direction: row;
+    gap: 3.2rem;
+    align-items: stretch;
+    width: 116rem;
+    max-width: calc(100% - 12rem);
+    min-height: 0;
+    padding: 2.9rem 0 4.6rem;
+}
+
+/* 左侧得分面板 */
+.sm-session-result-screen--report-card .sm-session-result-board {
+    flex: 1;
+    min-width: 0;
+}
+
+/* =================== Report Card - 得分面板（白色卡片） =================== */
+.sm-session-result-brand-card,
+.sm-session-result-score-card--report-card,
+.sm-session-result-board-card--report-card {
+    background: #ffffff;
+    border: none;
+    border-bottom: 0.5rem solid #d3aa8a;
+    border-radius: 2.8rem;
+    box-shadow: 0 0.6rem 0 rgba(0, 0, 0, 0.06);
+}
+
+.sm-session-result-board-card--report-card {
+    height: 60rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4.4rem 3.2rem;
+}
+
+/* 右侧面板 - flex列布局 */
+.sm-session-result-side--report-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 2.4rem;
+    width: 32rem;
+    flex-shrink: 0;
+}
+
+/* =================== Report Card - 游戏信息卡片 =================== */
+.sm-session-result-brand-card {
+    min-height: auto;
+    overflow: hidden;
+    padding: 3.2rem;
+    flex-shrink: 0;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-brand {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    gap: 1.6rem;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-icon {
+    width: 9.6rem;
+    height: 9.6rem;
+    border-radius: 2.16rem;
+    background: transparent;
+    box-shadow: none;
+    flex-shrink: 0;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #1d293d;
+}
+
+.sm-session-result-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.6rem;
+}
+
+.sm-session-result-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 4rem;
+    padding: 0.4rem 2.2rem;
+    border-radius: 999rem;
+    background: rgba(120, 53, 15, 0.1);
+    border: 0.15rem solid rgba(120, 53, 15, 0.2);
+    color: #92400e;
+    font-size: 1.8rem;
+    font-weight: 600;
+    box-shadow: none;
+    line-height: 2.7rem;
+}
+
+/* =================== Report Card - 训练得分面板 =================== */
+.sm-session-result-score-card--report-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    flex: 1;
+    min-height: 20rem;
+    padding: 3.2rem;
+    text-align: center;
+    gap: 0.4rem;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-caption {
+    font-size: 3.2rem;
+    font-weight: 600;
+    line-height: 4.8rem;
+    color: #ff5324;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-label {
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: #1d293d;
+    line-height: 4.2rem;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-value {
+    font-size: 8.8rem;
+    font-weight: 900;
+    color: #ff5324;
+    line-height: 9.6rem;
+    font-family: "Source Han Sans CN", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-stack {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    min-height: 9.6rem;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    font-family: inherit;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-source {
+    position: relative;
+    z-index: 1;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-source--hidden {
+    color: transparent !important;
+    text-shadow: none !important;
+    opacity: 0;
+    user-select: none;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-stage {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+    border-radius: 2rem;
+    background: #ffffff;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-stage.is-visible {
+    opacity: 1;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-stage-glow,
+.sm-session-result-screen--report-card .sm-session-result-score-stage-flash {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-stage-glow {
+    inset: -1rem -1.4rem -1.2rem;
+    background: radial-gradient(circle at 50% 58%, rgba(255, 210, 136, 0.92), rgba(255, 168, 60, 0.28) 44%, rgba(255, 168, 60, 0) 76%);
+    filter: blur(1rem);
+    opacity: 0.88;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-stage-flash {
+    inset: -0.45rem -0.9rem;
+    border-radius: 2.2rem;
+    background: radial-gradient(circle at 50% 52%, rgba(255, 255, 255, 0.94), rgba(255, 226, 172, 0.64) 42%, rgba(255, 226, 172, 0) 74%);
+    opacity: 0;
+    transform: none;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-stage.is-finished .sm-session-result-score-stage-flash {
+    opacity: 0;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-score-reels {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: #ff5324;
+    font-family: inherit;
+    font-variant-numeric: inherit;
+    font-feature-settings: inherit;
+    text-shadow:
+        0 0.18rem 0 rgba(255, 255, 255, 0.72),
+        0 0.48rem 1rem rgba(255, 149, 45, 0.18);
+}
+
+.sm-session-result-screen--report-card .sm-session-result-reel {
+    position: relative;
+    flex: 0 0 auto;
+    height: 1em;
+    overflow: hidden;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-reel-track {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.sm-session-result-screen--report-card .sm-session-result-reel-digit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 1em;
+}
+
+/* =================== Report Card - 继续训练按钮 =================== */
+.sm-session-result-continue--report-card {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    padding: 1.6rem;
+    border-radius: 1.6rem;
+    border: none;
+    background: #2b7fff;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0.6rem 0 #165ac1;
+    line-height: 2.8rem;
+    flex-shrink: 0;
+}
+
+.sm-session-result-continue--report-card.sm-session-result-continue--animated {
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.sm-session-result-continue--report-card.sm-session-result-continue--hidden {
+    opacity: 0;
+    transform: translateY(2rem) scale(0.9);
+    pointer-events: none;
+}
+
+.sm-session-result-continue--report-card.sm-session-result-continue--ready {
+    animation: smSessionResultContinueIn 0.54s cubic-bezier(0.16, 1.04, 0.24, 1) both;
+}
+
+.sm-session-result-score-card--report-card[data-reveal-state="intro"] {
+    background: #ffffff;
+}
+
+.sm-session-result-score-card--report-card[data-reveal-state="intro"]::before {
+    opacity: 0;
+}
+
+.sm-session-result-score-card--report-card[data-reveal-state="intro"] .sm-session-result-score-stage {
+    background: #ffffff;
+}
+
+.sm-session-result-score-card--report-card[data-reveal-state="intro"] .sm-session-result-score-stage-glow,
+.sm-session-result-score-card--report-card[data-reveal-state="intro"] .sm-session-result-score-stage-flash {
+    opacity: 0;
+}
+
+.sm-session-result-score-card--report-card[data-reveal-state="intro"] .sm-session-result-score-reels {
+    text-shadow: none;
+}
+
+.sm-session-result-score-card--report-card[data-reveal-state="celebrate"] .sm-session-result-score-stage-glow,
+.sm-session-result-score-card--report-card[data-reveal-state="celebrate"] .sm-session-result-score-stage-flash {
+    opacity: 0;
+}
+
+.sm-session-result-score-card--report-card[data-reveal-state="celebrate"] .sm-session-result-score-reels {
+    text-shadow: none;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row--intro {
+    opacity: 0;
+    transform: translateX(-1.5rem) scale(0.98);
+    animation: smSessionResultRowIntro 0.46s cubic-bezier(0.19, 1.02, 0.24, 1) forwards;
+    animation-delay: var(--sm-session-result-row-delay, 0ms);
+}
+
+@keyframes smSessionResultScoreFlash {
+    0% {
+        opacity: 0;
+    }
+    36% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes smSessionResultCaptionPulse {
+    0% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes smSessionResultContinueIn {
+    0% {
+        opacity: 0;
+        transform: translateY(0.8rem) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes smSessionResultRowIntro {
+    0% {
+        opacity: 0;
+        transform: translateX(-1.5rem) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* =================== Report Card - 得分行（flex布局） =================== */
+.sm-session-result-screen--report-card .sm-session-result-row {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row + .sm-session-result-row {
+    margin-top: 0;
+}
+
+/* 标签 */
+.sm-session-result-screen--report-card .sm-session-result-row-label {
+    width: 5.6rem;
+    flex-shrink: 0;
+    font-size: 2.8rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+/* 级别标签颜色 */
+.sm-session-result-screen--report-card .sm-session-result-row--level-1 .sm-session-result-row-label { color: #4179ee; }
+.sm-session-result-screen--report-card .sm-session-result-row--level-2 .sm-session-result-row-label { color: #2c28ea; }
+.sm-session-result-screen--report-card .sm-session-result-row--level-3 .sm-session-result-row-label { color: #d08d1b; }
+.sm-session-result-screen--report-card .sm-session-result-row--level-4 .sm-session-result-row-label { color: #dd570f; }
+.sm-session-result-screen--report-card .sm-session-result-row--level-5 .sm-session-result-row-label { color: #f04e45; }
+.sm-session-result-screen--report-card .sm-session-result-row--level-6 .sm-session-result-row-label { color: #7e37de; }
+
+/* 进度条 - 药丸形 */
+.sm-session-result-screen--report-card .sm-session-result-row-bar {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row-track {
+    min-height: 5.6rem;
+    padding: 0 2.2rem;
+    border-radius: 9999rem;
+    background: #e8e4de;
+    overflow: hidden;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row-fill {
+    border-radius: 9999rem;
+    border: 0.2rem solid transparent;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row-score {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* 级别进度条颜色（Figma渐变 + 内阴影） */
+.sm-session-result-screen--report-card .sm-session-result-row--level-1 .sm-session-result-row-fill {
+    background: linear-gradient(to bottom, #4b82f6, #3a72e9);
+    border-color: #2153bb;
+    box-shadow: inset 0 -0.4rem 0.2rem #2b66e3, inset 0 0.6rem 0.4rem #7ba6ff;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row--level-2 .sm-session-result-row-fill {
+    background: linear-gradient(to bottom, #4b56f6, #3a4ce9);
+    border-color: #2f3dd6;
+    box-shadow: inset 0 -0.4rem 0.2rem #2d3fe3, inset 0 0.6rem 0.4rem #828afc;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row--level-3 .sm-session-result-row-fill {
+    background: linear-gradient(to bottom, #ffcb78, #eaa938);
+    border-color: #cd8d1e;
+    box-shadow: inset 0 -0.4rem 0.2rem #da9825, inset 0 0.6rem 0.4rem #ffe4b1;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row--level-4 .sm-session-result-row-fill {
+    background: linear-gradient(to bottom, #ffb676, #ea8f3f);
+    border-color: #ee8e3a;
+    box-shadow: inset 0 -0.4rem 0.2rem #da7822, inset 0 0.6rem 0.4rem #ffbe84;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row--level-5 .sm-session-result-row-fill {
+    background: linear-gradient(to bottom, #f76b5c, #ee4e47);
+    border-color: #f04e45;
+    box-shadow: inset 0 -0.4rem 0.2rem #d73e36, inset 0 0.6rem 0.4rem #ff9a90;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-row--level-6 .sm-session-result-row-fill {
+    background: linear-gradient(to bottom, #9658e0, #8b4be5);
+    border-color: #7e37de;
+    box-shadow: inset 0 -0.4rem 0.2rem #7b37cf, inset 0 0.6rem 0.4rem #b888f3;
+}
+
+/* 指标区域 */
+.sm-session-result-screen--report-card .sm-session-result-row-metrics {
+    --sm-session-result-metrics-gap: 1.6rem;
+    --sm-session-result-metrics-width: 18.4rem;
+    flex-shrink: 0;
+    font-size: 2.4rem;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-metric-icon {
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.sm-session-result-screen--report-card .sm-session-result-metric-value {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: #475b75;
+}
+
+/* 不再需要单独的 actions 区域（按钮已在 side 面板内） */
+.sm-session-result-actions--report-card {
+    display: none;
+}

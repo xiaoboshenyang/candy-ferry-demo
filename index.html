@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+ <title>糖果摆渡｜本地试玩 v0.3</title>
+ <link rel="icon" href="./assets/game-icon.png">
+ <link rel="stylesheet" href="./public-template/template.css"><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+ <div id="app" aria-label="糖果摆渡试玩"><div class="loading-note" role="status">正在加载题库与素材…</div></div>
+ <aside id="playtest-tools" class="tools" aria-label="试玩面板">
+  <button id="tool-toggle" aria-expanded="false" aria-controls="tool-body">试玩设置</button>
+  <div id="tool-body" hidden>
+   <h2>试玩面板</h2>
+   <label>题号 <select id="question-select"><option value="">自动出题</option></select></label>
+   <p>选择题号立即开始固定题试玩；完成后保留现场。每次切换题号重新计时。</p>
+   <button id="restart-question" type="button">重新试玩</button>
+   <label>等级 <select id="level-mode"><option value="auto">自动</option><option value="1">锁定 L1</option><option value="2">锁定 L2</option><option value="3">锁定 L3</option><option value="4">锁定 L4</option><option value="5">锁定 L5</option><option value="6">锁定 L6</option></select></label>
+   <label class="check-option"><input id="review-mode" type="checkbox"> 开启快速审阅</label>
+   <label>摆动速度 <input id="speed" type="range" min="50" max="150" step="10" value="100"><output id="speed-value">100%</output></label>
+   <label>划绳命中宽度 <input id="hit" type="range" min="50" max="200" step="10" value="100"><output id="hit-value">100%</output></label>
+   <label class="check-option"><input id="mute" type="checkbox"> 静音背景音乐</label>
+   <div id="effective" role="status">当前：L1 基础｜速度 100%｜命中 100%</div>
+   <p id="next-rule">等级切换从下一题生效；速度和命中宽度立即生效。快速审阅最高 1600%，计时始终按真实时间。</p>
+   <p>同局优先不重复母题；本级母题全部用完后，按最久未用顺序继续，并轮换位置。</p>
+   <button id="restore" type="button">恢复默认并重新开始</button>
+   <div class="test-links"><a href="./data/review.html" target="_blank" rel="noopener">审题页</a></div>
+  </div>
+ </aside>
+ <script src="./goal-contact.js"></script><script src="./physics.js"></script><script src="./solver.js"></script><script type="module" src="./game.js?v=clearance-1"></script>
+</body>
+</html>

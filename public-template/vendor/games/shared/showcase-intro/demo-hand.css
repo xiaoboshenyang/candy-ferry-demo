@@ -1,0 +1,73 @@
+/**
+ * 介绍页演示手指公共样式
+ * 视觉基准：小院散步 (garden-walk)
+ * - 尺寸 4.6rem × 5.2rem
+ * - 倾斜角 0deg（素材自身朝向，不再额外 rotate）
+ * - transform-origin 28% 12%（指尖附近）
+ * - finger-click 单指图用 center / contain
+ *
+ * 用法：
+ * 1. 游戏 style.css 已通过 showcase-intro-screen.css 自动引入本文件
+ * 2. 手指元素加 class="sm-demo-hand"，或在游戏选择器中复用下方 CSS 变量
+ * 3. 若仍使用 hand-gesture.png 精灵图，在游戏内覆盖：
+ *    --sm-demo-hand-bg-position: 100% 93%;
+ *    --sm-demo-hand-bg-size: 200% auto;
+ * 4. 位移/按压缩放由游戏自行写 transform，并带上
+ *    rotate(var(--sm-demo-hand-rotate))
+ * 5. 若手指放在「整场景 transform: scale(...)」容器内，必须在舞台上声明
+ *    --sm-demo-hand-scene-scale 与场景缩放相同，并把手指宽高写成：
+ *    width/height: calc(var(--sm-demo-hand-*) / var(--sm-demo-hand-scene-scale))
+ *    或加 class `.sm-demo-hand--counter-scale`；否则视觉会被父级一起缩小
+ *    （超市购物 / 蔬果采摘 / 相亲角 / 找相同 均属此类）
+ */
+
+:root {
+  --sm-demo-hand-width: 4.6rem;
+  --sm-demo-hand-height: 5.2rem;
+  --sm-demo-hand-rotate: 0deg;
+  --sm-demo-hand-transform-origin: 28% 12%;
+  --sm-demo-hand-filter: drop-shadow(0 0.38rem 0.82rem rgba(0, 0, 0, 0.22));
+  --sm-demo-hand-bg-position: center;
+  --sm-demo-hand-bg-size: contain;
+  --sm-demo-hand-image: none;
+  /* 父级整场景 scale；默认 1（无补偿） */
+  --sm-demo-hand-scene-scale: 1;
+  /* 不要把 url() 放进自定义属性：Chromium 会按元素重复请求。
+     正式背景由 applySharedAssetCssVariables 写入 .sm-demo-hand 样式表规则。 */
+  --sm-shared-finger-click-image: none;
+}
+
+.sm-demo-hand {
+  position: absolute;
+  z-index: 20;
+  width: var(--sm-demo-hand-width);
+  height: var(--sm-demo-hand-height);
+  pointer-events: none;
+  opacity: 0;
+  transform: rotate(var(--sm-demo-hand-rotate));
+  transform-origin: var(--sm-demo-hand-transform-origin);
+  background-image: var(--sm-demo-hand-image);
+  background-repeat: no-repeat;
+  background-position: var(--sm-demo-hand-bg-position);
+  background-size: var(--sm-demo-hand-bg-size);
+  filter: var(--sm-demo-hand-filter);
+  will-change: transform, opacity, left, top;
+}
+
+/* 抵消父级场景 scale，保证屏幕上仍为公共手指尺寸 */
+.sm-demo-hand--counter-scale {
+  width: calc(var(--sm-demo-hand-width) / var(--sm-demo-hand-scene-scale, 1));
+  height: calc(var(--sm-demo-hand-height) / var(--sm-demo-hand-scene-scale, 1));
+}
+
+.sm-demo-hand.is-visible,
+.sm-demo-hand--visible {
+  opacity: 1;
+}
+
+.sm-demo-hand.is-tapping,
+.sm-demo-hand--tap,
+.sm-demo-hand--press,
+.sm-demo-hand--pressing {
+  transform: rotate(var(--sm-demo-hand-rotate)) scale(0.86);
+}

@@ -1,0 +1,257 @@
+/**
+ * 游戏通用组件 - 等级提升提示遮罩
+ *
+ * 结构分层：
+ * - `.sm-game-level-up-toast`：定位壳
+ * - `.sm-game-level-up-backdrop`：模糊遮罩层（仅 is-backdrop-on 开关，播放中样式不变）
+ * - `.sm-game-level-up-track`：升级/时间到内容（承载 is-visible / is-playing / is-hiding）
+ */
+
+.sm-game-level-up-toast {
+    --sm-level-up-pill-width: 30.8rem;
+    --sm-level-up-pill-height: 10.8rem;
+    --sm-level-up-icon-size: 14.6rem;
+    --sm-level-up-icon-shift: -2.9rem;
+    --sm-level-up-anchor-shift: -6.2rem;
+    position: absolute;
+    inset: 0;
+    z-index: 9999;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.sm-game-level-up-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(45, 15, 7, 0.42);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.18s ease, visibility 0s linear 0.18s;
+}
+
+.sm-game-level-up-toast.is-backdrop-on .sm-game-level-up-backdrop {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sm-game-level-up-track {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(0);
+    will-change: transform;
+    transition:
+        opacity 0.18s ease,
+        visibility 0s linear 0.18s,
+        transform 0.66s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.sm-game-level-up-track.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s, 0s, 0s;
+    transform: translateX(var(--sm-level-up-anchor-shift));
+}
+
+.sm-game-level-up-track.is-visible.is-hiding {
+    opacity: 0;
+}
+
+.sm-game-level-up-track.is-resetting,
+.sm-game-level-up-track.is-resetting .sm-game-level-up-pill-mask,
+.sm-game-level-up-track.is-resetting .sm-game-level-up-icon {
+    transition: none;
+}
+
+.sm-game-level-up-pill-mask {
+    position: absolute;
+    left: calc(var(--sm-level-up-icon-size) * -0.22);
+    top: 50%;
+    width: 0;
+    height: var(--sm-level-up-pill-height);
+    overflow: hidden;
+    border-radius: 99.9rem;
+    transform: translateY(-50%);
+    z-index: 1;
+    transition: width 0.66s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.sm-game-level-up-track.is-visible .sm-game-level-up-pill-mask {
+    width: var(--sm-level-up-pill-width);
+}
+
+.sm-game-level-up-pill {
+    position: relative;
+    width: var(--sm-level-up-pill-width);
+    height: 100%;
+    border-radius: inherit;
+    --sm-level-up-pill-fill: linear-gradient(to bottom, #fcf3d9 0%, #fdfbf3 20%, #ffffff 50%, #f9f2e3 85%, #f1e8d3 100%);
+    --sm-level-up-pill-top-fill: linear-gradient(
+        to bottom,
+        rgba(252, 243, 217, 0.96) 0%,
+        rgba(253, 251, 243, 0.9) 22%,
+        rgba(255, 255, 255, 0.58) 58%,
+        rgba(249, 242, 227, 0.14) 100%
+    );
+    background: var(--sm-level-up-pill-fill);
+    border: 0.1rem solid rgba(255, 252, 246, 0.98);
+    box-shadow:
+        inset 0 -0.6rem 1.2rem rgba(186, 172, 137, 0.25),
+        inset 0 0.2rem 0.2rem rgba(255, 255, 255, 0.9),
+        inset 0 0.1rem 0.3rem rgba(0, 0, 0, 0.02),
+        0 0.6rem 1.5rem rgba(0, 0, 0, 0.04),
+        0 0.2rem 0.4rem rgba(186, 172, 137, 0.1);
+}
+
+.sm-game-level-up-pill::before {
+    content: "";
+    position: absolute;
+    inset: 0.6rem 1.6rem auto 1.6rem;
+    height: 3.4rem;
+    border-radius: 99.9rem;
+    background: var(--sm-level-up-pill-top-fill);
+    opacity: 1;
+}
+
+.sm-game-level-up-pill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04) 28%, rgba(255, 255, 255, 0) 50%, rgba(241, 232, 211, 0.16) 100%),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 24%);
+    box-shadow:
+        inset 0.1rem 0.1rem 0 rgba(255, 255, 255, 0.82),
+        inset 0 -0.3rem 0.6rem rgba(186, 172, 137, 0.16);
+    pointer-events: none;
+}
+
+.sm-game-level-up-pill__shine {
+    position: absolute;
+    inset: 0 auto 0 -9rem;
+    width: 8.8rem;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 250, 221, 0.55), rgba(255, 255, 255, 0));
+    mix-blend-mode: screen;
+    opacity: 0;
+    transform: translateX(0);
+}
+
+.sm-game-level-up-track.is-playing .sm-game-level-up-pill__shine {
+    animation: sm-level-up-pill-shine 0.42s ease-out 0.3s both;
+}
+
+.sm-game-level-up-text {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    height: 100%;
+    padding-left: 8.4rem;
+    padding-right: 2.2rem;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #ff9800;
+    -webkit-text-stroke: 0;
+    text-shadow: none;
+    box-sizing: border-box;
+}
+
+.sm-game-level-up-char {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1em;
+    opacity: 0;
+    transform: scale(0.84);
+    transform-origin: 50% 50%;
+    will-change: transform, opacity;
+}
+
+.sm-game-level-up-track.is-playing .sm-game-level-up-char {
+    animation: sm-level-up-char-pop 0.3s ease-in-out both;
+    animation-delay: var(--sm-char-delay, 0s);
+}
+
+.sm-game-level-up-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: var(--sm-level-up-icon-size);
+    height: var(--sm-level-up-icon-size);
+    transform: translate(-50%, -50%) translate3d(0, 0, 0);
+    z-index: 3;
+    will-change: transform;
+    transition: transform 0.66s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.sm-game-level-up-track.is-visible .sm-game-level-up-icon {
+    transform: translate(-50%, -50%) translate3d(var(--sm-level-up-icon-shift), 0, 0);
+}
+
+.sm-game-level-up-icon__inner {
+    width: 100%;
+    height: 100%;
+}
+
+.sm-game-level-up-track.is-playing .sm-game-level-up-icon__inner {
+    animation: sm-level-up-icon-bop 0.16s ease-in-out 0.26s 2 alternate;
+}
+
+.sm-game-level-up-icon__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes sm-level-up-pill-shine {
+    from {
+        opacity: 0;
+        transform: translateX(0);
+    }
+    20% {
+        opacity: 0.9;
+    }
+    to {
+        opacity: 0;
+        transform: translateX(calc(var(--sm-level-up-pill-width) + 4.6rem));
+    }
+}
+
+@keyframes sm-level-up-char-pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.84);
+    }
+    45% {
+        opacity: 1;
+        transform: scale(1.34);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes sm-level-up-icon-bop {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1.08) rotate(-7deg);
+    }
+}
+
+/* 升级 / 时间到模糊层出现时冻结宿主其余内容，避免 backdrop-filter 每帧采样动态画面。
+   浮层自身动画通过 :not(.sm-game-level-up-toast) 排除。 */
+.sm-game-overlay-freeze > :not(.sm-game-level-up-toast),
+.sm-game-overlay-freeze > :not(.sm-game-level-up-toast) * {
+    animation-play-state: paused !important;
+}

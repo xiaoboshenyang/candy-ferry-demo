@@ -1,0 +1,26 @@
+@import './vendor/games/game-list/garden-walk/style.css';
+@import './vendor/games/shared/intro-topbar/game-intro-topbar.css';
+@import './vendor/games/shared/top-bar/game-top-bar.css';
+@import './vendor/games/shared/level-up/game-level-up.css';
+@import './vendor/games/shared/time-up/game-time-up.css';
+html{font-size:10px!important}body{background:#edf0f3}
+.public-game-shell{position:absolute;left:50%;top:50%;width:1280px;height:800px;transform-origin:center;overflow:hidden;font-size:24px;color:#1f2937;isolation:isolate}
+.game-background{position:absolute;inset:0;background:linear-gradient(180deg,#f5f1e3 0%,#e8e0c9 34%,#d2f88e 34%,#8fe85a 100%);background-position:center;background-size:cover}
+.game-stage{position:absolute;inset:0}.public-topbar{position:absolute;left:0;right:0;top:0;height:72px;z-index:50;--top-bar-min-height:72px;--top-bar-padding:0 25.4px}
+.public-topbar .top-bar{height:72px;min-height:72px;box-sizing:border-box}.game-area{position:absolute;left:0;top:72px;width:1280px;height:728px;overflow:hidden;touch-action:none}
+.public-overlays{position:absolute;inset:0;pointer-events:none;z-index:100}.public-overlays:empty{display:none}.public-feedback{position:absolute;inset:72px 0 0;display:grid;place-items:center;background:#14251b55;backdrop-filter:blur(4px);pointer-events:auto}
+.public-feedback .badge{background:#fff;border-radius:30px;padding:30px 60px;text-align:center;font-size:32px;box-shadow:0 15px 60px #1233}.symbol{width:100px;height:100px;border-radius:50%;margin:auto auto 15px;background:#2cb768;color:white;display:grid;place-items:center;font-size:68px}.symbol.bad{background:#ea6670}
+.public-demo-media{display:block;width:100%;height:100%;object-fit:contain}.public-demo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#4c7145;color:white;font-size:24px;min-height:260px}.public-demo-placeholder img{max-width:180px;max-height:180px;object-fit:contain}.public-demo-placeholder span{font-size:100px}.public-demo-placeholder p{font-size:24px}.sm-showcase-demo-stage-shell{overflow:hidden}.sm-showcase-demo-overlay{z-index:500}.sm-showcase-demo-overlay-stage-wrapper{height:580px;width:1000px}
+.public-tutorial{text-align:center;padding-top:80px}.public-tutorial p{display:inline-block;background:white;border-radius:15px;padding:20px 30px;font-size:28px}.public-tutorial button{display:block;margin:70px auto 0;width:130px;height:130px;border:10px solid #fff;border-radius:50%;background:#53c765;box-shadow:0 0 0 9px #5cdf7f88;font-size:55px;cursor:pointer}.result-game-icon{width:110px;height:110px;object-fit:contain;font-size:75px}
+/* Shared source layouts are measured in design coordinates, never browser viewport units. */
+.public-game-shell .sm-session-result-screen{width:100%;height:100%}.public-game-shell .sm-session-overlay{position:absolute}.public-game-shell .sm-game-level-up-overlay{pointer-events:none}.public-game-shell .sm-showcase-demo-overlay-stage-wrapper{max-width:calc(100% - 120px)}
+
+/* Playtest keeps the same gameplay surface and only adds a small pause/end action. */
+.playtest-panel{position:absolute;inset:72px 0 0;z-index:600;display:grid;place-items:center;background:#14251b55;backdrop-filter:blur(3px)}.playtest-panel section{min-width:320px;padding:32px 48px;border-radius:24px;background:#fff;text-align:center}.playtest-panel h2{font-size:32px;margin:0 0 28px}.playtest-panel button{font:inherit;padding:16px 42px;border:0;border-radius:14px;background:#2b7fff;color:white;cursor:pointer}
+
+/* A layout: one success message and the actual award, inside the existing overlay. */
+.public-feedback .badge.score-badge{box-sizing:border-box;width:330px;height:250px;padding:28px;background:#fff;color:#222b38;border-radius:30px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.public-feedback .success-line{display:flex;align-items:center;justify-content:center;gap:12px;font-size:30px;white-space:nowrap}
+.public-feedback .success-tick{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#63b46f;color:white;font:36px/1 Arial}
+.public-feedback .score-award{font:800 80px/1.1 Arial,"Microsoft YaHei",sans-serif;letter-spacing:-2px;color:#21643a;white-space:nowrap;margin-top:24px}
+.public-feedback .score-award small{display:inline;color:inherit;font:700 28px/1 "Microsoft YaHei",sans-serif;letter-spacing:0;margin-left:6px}

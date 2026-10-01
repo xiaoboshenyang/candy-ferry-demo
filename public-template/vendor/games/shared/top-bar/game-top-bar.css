@@ -1,0 +1,280 @@
+/**
+ * 游戏顶部信息栏 — 通用组件样式
+ *
+ * 提供顶部栏布局、暂停按钮、信息组（计时/难度/得分）、
+ * 等级变化通知条、以及相关动画。
+ *
+ * 默认视觉风格为"木纹棕色"，各游戏可通过 CSS 自定义属性覆盖。
+ *
+ * 用法：
+ *   <link rel="stylesheet" href="../shared/game-top-bar.css">
+ *
+ * 可覆盖的 CSS 自定义属性（在 .game-screen 或 :root 上设置）：
+ *   --top-bar-bg
+ *   --top-bar-min-height
+ *   --top-bar-padding
+ *   --top-bar-gap
+ *   --top-bar-margin-bottom
+ *   --pause-btn-bg
+ *   --pause-btn-border
+ *   --pause-btn-color
+ *   --pause-btn-shadow
+ *   --info-group-bg
+ *   --info-group-border
+ *   --info-group-shadow
+ *   --info-group-color
+ *   --info-group-score-bg
+ *   --info-group-score-border-color
+ *   --info-group-score-shadow
+ *   --info-group-score-label-color
+ *   --info-group-score-value-color
+ *   --info-icon-size
+ *   --info-font-size
+ */
+
+/* =================== 顶部栏容器 =================== */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--top-bar-gap, 2.4rem);
+    min-height: var(--top-bar-min-height, 8.64rem);
+    padding: var(--top-bar-padding, 0 2.54rem);
+    margin-bottom: var(--top-bar-margin-bottom, 0);
+    background: var(--top-bar-bg, transparent);
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    flex-shrink: 0;
+}
+
+.top-bar-statuses {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2.4rem;
+}
+
+/* =================== 暂停按钮 =================== */
+.pause-btn {
+    min-width: 17rem;
+    height: auto;
+    background: var(--pause-btn-bg, linear-gradient(180deg, #c57e56 0%, #7c3c20 100%));
+    border: var(--pause-btn-border, 0.3rem solid #683016);
+    border-radius: 999rem;
+    color: var(--pause-btn-color, #ffffff);
+    font-size: var(--info-font-size, 2.4rem);
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: var(--pause-btn-shadow, 0 0.4rem 0.82rem rgba(0, 0, 0, 0.15), inset 0 0.8rem 0.9rem #9f5433);
+    transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5.6rem;
+    padding: 0 2.4rem;
+    line-height: 1;
+}
+
+.pause-btn:hover {
+    filter: brightness(1.06);
+}
+
+.pause-btn:active {
+    transform: translateY(0.1rem);
+}
+
+/* =================== 信息组（计时器/难度/得分） =================== */
+.info-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5.6rem;
+    padding: 0 2.4rem;
+    line-height: 1;
+    background: var(--info-group-bg, linear-gradient(180deg, #c57e56 0%, #7c3c20 100%));
+    border: var(--info-group-border, 0.3rem solid #683016);
+    border-radius: 999rem;
+    box-shadow: var(--info-group-shadow, 0 0.4rem 0.82rem rgba(0, 0, 0, 0.15), inset 0 0.8rem 0.9rem #9f5433);
+    color: var(--info-group-color, #ffffff);
+    gap: 0.8rem;
+    font-size: var(--info-font-size, 2.4rem);
+    font-weight: 500;
+}
+
+/* 得分信息组可附加特殊样式 */
+.info-group--score {
+    background: var(--info-group-score-bg, linear-gradient(180deg, #ffe8bb 0%, #ffd4b4 100%));
+    border-color: var(--info-group-score-border-color, #f19028);
+    box-shadow: var(--info-group-score-shadow, 0 0.4rem 0.82rem rgba(0, 0, 0, 0.15), inset 0 0.8rem 0.9rem rgba(251, 157, 98, 0.44));
+}
+
+.info-group--score .info-label,
+.info-group--score .info-value {
+    color: var(--info-group-score-label-color, #8b470a);
+}
+
+/* =================== 图标 =================== */
+.info-group .info-icon {
+    width: var(--info-icon-size, 3.2rem);
+    height: var(--info-icon-size, 3.2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.info-group .info-icon svg,
+.info-group .info-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* =================== 文字 =================== */
+.info-label,
+.info-value {
+    font-size: var(--info-font-size, 2.4rem);
+    font-weight: 500;
+    color: var(--info-group-color, #ffffff);
+}
+
+/* =================== 计时器特殊样式 =================== */
+.timer-value {
+    font-variant-numeric: tabular-nums;
+}
+
+.timer-value.warning {
+    color: #FFD54F;
+    animation: topbar-pulseWarn 0.5s ease-in-out infinite;
+    will-change: opacity;
+}
+
+/* 升级 / 时间到期间必须真正停掉 warning 闪烁。
+   顶栏不一定在 freeze host 子树里，:has() 在部分 WebView 也不可靠；
+   will-change 合成层上 animation-play-state 也可能停不住，因此用独立 class + 关掉动画。 */
+.sm-game-overlay-freeze .timer-value.warning,
+.sm-game-time-up-freeze .timer-value.warning,
+body:has(.sm-game-overlay-freeze) .timer-value.warning,
+body:has(.sm-game-time-up-freeze) .timer-value.warning,
+.timer-value.sm-timer-warning-frozen {
+    animation: none !important;
+    animation-play-state: paused !important;
+    will-change: auto;
+}
+
+/* =================== 得分特殊样式 =================== */
+.score-value {
+    display: inline-block;
+    min-width: 4ch;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    transition: transform 0.2s;
+}
+
+.score-value.bump {
+    animation: topbar-scoreBump 0.3s ease-out;
+}
+
+/* =================== 等级变化通知条 =================== */
+.levelup-notice {
+    position: absolute;
+    top: 6.1rem;
+    left: 50%;
+    transform: translate(-50%, -1.2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 30rem;
+    max-width: calc(100% - 4rem);
+    padding: 1rem 1.8rem;
+    background: rgba(255, 248, 225, 0.94);
+    border: 0.2rem solid rgba(255, 143, 0, 0.35);
+    border-radius: 999rem;
+    box-shadow: 0 0.8rem 2rem rgba(0,0,0,0.1);
+    backdrop-filter: blur(6px);
+    will-change: backdrop-filter;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 120;
+    text-align: center;
+}
+
+.levelup-notice.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.levelup-notice-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #E65100;
+}
+
+.levelup-notice-desc {
+    font-size: 1.35rem;
+    color: #7B5E57;
+    line-height: 1.45;
+}
+
+/* --- 通知色调变体 --- */
+.levelup-notice[data-notice-tone="upgrade"] {
+    background: rgba(255, 248, 225, 0.94);
+    border-color: rgba(255, 143, 0, 0.35);
+}
+
+.levelup-notice[data-notice-tone="upgrade"] .levelup-notice-title {
+    color: #E65100;
+}
+
+.levelup-notice[data-notice-tone="downgrade"] {
+    background: rgba(245, 245, 245, 0.96);
+    border-color: rgba(96, 125, 139, 0.28);
+}
+
+.levelup-notice[data-notice-tone="downgrade"] .levelup-notice-title {
+    color: #455A64;
+}
+
+.levelup-notice[data-notice-tone="downgrade"] .levelup-notice-desc {
+    color: #607D8B;
+}
+
+.levelup-notice[data-notice-tone="warning"],
+.levelup-notice[data-notice-tone="end"] {
+    background: rgba(255, 245, 238, 0.96);
+    border-color: rgba(235, 112, 41, 0.32);
+}
+
+.levelup-notice[data-notice-tone="warning"] .levelup-notice-title,
+.levelup-notice[data-notice-tone="end"] .levelup-notice-title {
+    color: #C55B18;
+}
+
+.levelup-notice[data-notice-tone="warning"] .levelup-notice-desc,
+.levelup-notice[data-notice-tone="end"] .levelup-notice-desc {
+    color: #8A5B3D;
+}
+
+.levelup-notice[data-notice-tone="end"] {
+    background: rgba(255, 241, 236, 0.97);
+    border-color: rgba(213, 81, 48, 0.3);
+}
+
+/* =================== 动画 =================== */
+@keyframes topbar-pulseWarn {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+@keyframes topbar-scoreBump {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}

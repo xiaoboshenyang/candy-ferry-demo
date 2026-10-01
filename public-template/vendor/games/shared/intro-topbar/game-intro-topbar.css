@@ -1,0 +1,140 @@
+/* =================== 介绍页顶部栏 — 通用样式 =================== */
+
+.sm-intro-topbar {
+    --sm-intro-topbar-min-height: 6.4rem;
+    --sm-intro-topbar-padding: 0 2.4rem;
+    --sm-intro-topbar-gap: 1.6rem;
+
+    /* 标题胶囊 */
+    --sm-intro-topbar-title-min-width: 19.2rem;
+    --sm-intro-topbar-title-height: 5.6rem;
+    --sm-intro-topbar-title-padding: 0 2.4rem;
+    --sm-intro-topbar-title-font-size: 3.2rem;
+    --sm-intro-topbar-title-font-weight: 600;
+    --sm-intro-topbar-title-color: #ffffff;
+    --sm-intro-topbar-title-border: 0.3rem solid #683016;
+    --sm-intro-topbar-title-radius: 3.0476rem;
+    --sm-intro-topbar-title-bg: linear-gradient(180deg, #c57e56 0%, #7c3c20 100%);
+    --sm-intro-topbar-title-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.15), inset 0 0.8rem 0.9rem rgba(159, 84, 51, 0.95);
+
+    /* 最高得分胶囊 */
+    --sm-intro-topbar-record-min-height: 5.6rem;
+    --sm-intro-topbar-record-padding: 0 2.4rem;
+    --sm-intro-topbar-record-gap: 0.8rem;
+    --sm-intro-topbar-record-font-size: 2.4rem;
+    --sm-intro-topbar-record-font-weight: 500;
+    --sm-intro-topbar-record-color: #8b470a;
+    --sm-intro-topbar-record-border: 0.3rem solid #f19028;
+    --sm-intro-topbar-record-radius: 3.0476rem;
+    --sm-intro-topbar-record-bg: linear-gradient(180deg, #ffe8bb 0%, #ffd4b4 100%);
+    --sm-intro-topbar-record-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.15), inset 0 0.8rem 0.9rem rgba(251, 157, 98, 0.44);
+
+    /* 最高得分图标 */
+    --sm-intro-topbar-record-icon-size: 3.2rem;
+    --sm-intro-topbar-record-icon-bg: var(--sm-shared-record-icon-image, none) center / contain no-repeat;
+
+    position: relative;
+    width: 100%;
+    min-height: var(--sm-intro-topbar-min-height);
+    padding: var(--sm-intro-topbar-padding);
+    display: flex;
+    gap: var(--sm-intro-topbar-gap);
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 返回按钮 & 得分胶囊置前 */
+.sm-intro-topbar__home-btn,
+.sm-intro-topbar__record {
+    position: relative;
+    z-index: 1;
+}
+
+.sm-intro-topbar__home-btn--daily {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: auto;
+    min-width: 19.2rem;
+    padding: 0 1.6rem;
+}
+
+.sm-intro-topbar__home-btn--daily .sm-back-btn__icon {
+    flex: 0 0 3.2rem;
+}
+
+.sm-intro-topbar__home-label {
+    display: inline-flex;
+    align-items: center;
+    color: #ffffff;
+    white-space: nowrap;
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* 标题胶囊 — 绝对居中 */
+.sm-intro-topbar__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--sm-intro-topbar-title-min-width);
+    height: var(--sm-intro-topbar-title-height);
+    padding: var(--sm-intro-topbar-title-padding);
+    border: var(--sm-intro-topbar-title-border);
+    border-radius: var(--sm-intro-topbar-title-radius);
+    background: var(--sm-intro-topbar-title-bg);
+    box-shadow: var(--sm-intro-topbar-title-shadow);
+    color: var(--sm-intro-topbar-title-color);
+    font-size: var(--sm-intro-topbar-title-font-size);
+    font-weight: var(--sm-intro-topbar-title-font-weight);
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* 最高得分胶囊 */
+.sm-intro-topbar__record {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    min-height: var(--sm-intro-topbar-record-min-height);
+    padding: var(--sm-intro-topbar-record-padding);
+    border: var(--sm-intro-topbar-record-border);
+    border-radius: var(--sm-intro-topbar-record-radius);
+    background: var(--sm-intro-topbar-record-bg);
+    box-shadow: var(--sm-intro-topbar-record-shadow);
+    color: var(--sm-intro-topbar-record-color);
+    font-size: var(--sm-intro-topbar-record-font-size);
+    font-weight: var(--sm-intro-topbar-record-font-weight);
+    line-height: 1;
+    gap: var(--sm-intro-topbar-record-gap);
+    overflow: hidden;
+}
+
+/* 得分图标 */
+.sm-intro-topbar__record-icon {
+    position: relative;
+    flex: 0 0 var(--sm-intro-topbar-record-icon-size);
+    width: var(--sm-intro-topbar-record-icon-size);
+    height: var(--sm-intro-topbar-record-icon-size);
+    display: block;
+    line-height: 1;
+    font-size: 0;
+    background: var(--sm-intro-topbar-record-icon-bg);
+}
+
+/* 得分文本 */
+.sm-intro-topbar__record-text {
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+}

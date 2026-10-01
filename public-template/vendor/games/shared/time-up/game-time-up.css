@@ -1,0 +1,15 @@
+@import "../level-up/game-level-up.css";
+
+/* 兼容旧 class：时间到仍打 sm-game-time-up-freeze，规则与升级共用 overlay freeze。 */
+.sm-game-time-up-freeze > :not(.sm-game-level-up-toast),
+.sm-game-time-up-freeze > :not(.sm-game-level-up-toast) * {
+    animation-play-state: paused !important;
+}
+
+body:has(.sm-game-overlay-freeze) .timer-value.warning,
+body:has(.sm-game-time-up-freeze) .timer-value.warning,
+.timer-value.sm-timer-warning-frozen {
+    animation: none !important;
+    animation-play-state: paused !important;
+    will-change: auto;
+}
